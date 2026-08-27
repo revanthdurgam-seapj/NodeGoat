@@ -18,5 +18,10 @@ jobs:
           node --version
           npm --version
 
+      - name: Check npm registry
+        run: |
+          npm config get registry
+          npm ping
+
       - name: Install dependencies
         run: npm install
