@@ -1,0 +1,22 @@
+name: Test Self-Hosted Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout NodeGoat
+        uses: actions/checkout@v4
+
+      - name: Test Node.js environment
+        run: |
+          echo "Running on self-hosted runner"
+          uname -a
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        run: npm install
