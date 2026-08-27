@@ -1,0 +1,21 @@
+name: Sonatype Lifecycle Evaluation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lifecycle-evaluation:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout NodeGoat
+        uses: actions/checkout@v4
+
+      - name: Sonatype Lifecycle Evaluation
+        uses: sonatype/actions/evaluate@v1
+        with:
+          iq-server-url: http://localhost:8070
+          username: ${{ secrets.LIFECYCLE_USERNAME }}
+          password: ${{ secrets.LIFECYCLE_PASSWORD }}
+          application-id: nodegoat-demo
+          scan-targets: package.json package-lock.json
